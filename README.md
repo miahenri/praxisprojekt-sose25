@@ -18,3 +18,5 @@ Begleitend zur praktischen Umsetzung wird ein wissenschaftliches Thema bearbeite
 
 [Miro Board für das Projekt](https://miro.com/app/board/uXjVI_cS8GE=/)
 
+Contributor: Mia Henrichsmeyer
+Betreuer: Volker Schaefer
