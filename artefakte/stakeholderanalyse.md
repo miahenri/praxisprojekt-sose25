@@ -1,0 +1,8 @@
+| **Rolle**   | **Bezeichnung**                            | **Objektbereich**                | **Bezug zum System**                            | **Erfordernis an das System**                                   |
+|------------|---------------------------------------------|----------------------------------|--------------------------------------------------|------------------------------------------------------------------|
+| Primär     | Menschen mit motorischen Einschränkungen    | System               | Hauptzielgruppe und direkte Nutzer*innen         | Barrierefreie Nutzung |
+| Sekundär   | Angehörige                                   | Unterstützung & Betreuung, Vorteile des Systems       | Helfen bei Einrichtung und Nutzung               | Einfache Einrichtung, übersichtliche Struktur, robuste Bedienbarkeit       |
+| Sekundär   | Pflegepersonal, Betreuer*innen               | Arbeitsunterstützung & Betreuung | Setzen das System in Alltagssituationen ein      | Einfache Einrichtung, übersichtliche Struktur, robuste Bedienbarkeit  |
+| Sekundär   | Entwickler*innen & Accessibility-Community   | Technische Qualität & Standards  | Begleiten Umsetzung und prüfen auf Zugänglichkeit| Qualitativer Code, normgerechte Umsetzung  |
+| Sekundär   | Projektbetreuung / Hochschule          | Entwicklung & Bewertung        | Beobachtung und Bewertung des Projektverlaufs                   | Dokumentation, methodische Struktur, Umsetzung der Ziele         |
+| Tertiär    | Barrierefreiheits-Organisationen / Vereine   | Gesellschaftlicher Nutzen | Unterstützen Verbreitung & Sichtbarkeit      | Hoher Inklusionswert, Orientierung an realen Bedürfnissen               |
