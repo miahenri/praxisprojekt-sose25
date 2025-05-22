@@ -74,9 +74,6 @@ Die Anwendung soll als statische Website nutzbar sein, kann aber optional zur Pr
 Das Projekt wird durch eine schriftliche Ausarbeitung und Projektdokumentation begleitet und evaluiert.
 Im Rahmen dieses Projekts soll die Anwendung sich auf die Umsetzung des Frontends konzentrieren. Für eine eventuelle Erweiterung in Rahmen einer Bachlorarbeit, kann über die Anbindung an einen Streaminganbieter (Spotify, Soundcloud etc.) nachgedacht werden.
 
-## Fußnoten
-[^1]: Amyotrophe Lateralsklerose - ALS ist eine fortschreitende, bisher unheilbare Erkrankung des motorischen Nervensystems, bei der Nervenzellen im Gehirn und Rückenmark ihre Funktion verlieren, die für die Steuerung der Muskulatur verantwortlich sind. Typische Symptome sind langsam fortschreitende Muskelschwäche, Lähmung und Steifigkeit der Arme und Beine, des Rumpfes, der Zunge, des Schlundes und Kehlkopfes. 
-
 ## Literatur
 
 - W3C. (2018). Understanding Success Criterion 2.1.1: Keyboard. World Wide Web Consortium (W3C). https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html
@@ -84,6 +81,8 @@ Im Rahmen dieses Projekts soll die Anwendung sich auf die Umsetzung des Frontend
 - Prof. Dr. Thomas Meyer. (2022). Was ist ALS? Informationen zur Amyotrophen Lateralsklerose für Patienten und Angehörige. https://als-charite.de/wp-content/uploads/2019/01/WAS-IST-ALS.pdf
 
 ---
+
+[^1]: Amyotrophe Lateralsklerose - ALS ist eine fortschreitende, bisher unheilbare Erkrankung des motorischen Nervensystems, bei der Nervenzellen im Gehirn und Rückenmark ihre Funktion verlieren, die für die Steuerung der Muskulatur verantwortlich sind. Typische Symptome sind langsam fortschreitende Muskelschwäche, Lähmung und Steifigkeit der Arme und Beine, des Rumpfes, der Zunge, des Schlundes und Kehlkopfes. 
 
 Potentielle Namen: AUDARA (die Hörbare), MILO (Music – Interface – Low Barrier – Open Access)
 "Music in, barriers out."
