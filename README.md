@@ -1,4 +1,4 @@
-# Barrierefreier Musikplayer - Praxisprojekt von Mia Henrichsmeyer
+# Prototypische Umsetzung eines Webplayers für motorisch eingeschränkte Nutzer*innen im Kontext digitaler Barrierefreiheit
 
 ## 🏁 Projektziel
 
