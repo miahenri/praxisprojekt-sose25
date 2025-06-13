@@ -1,144 +1,69 @@
-## 1 – Tastaturbasierte Wiedergabesteuerung
+## POC 1 – Fokussteuerung und logische Tastaturnavigation
 
 **Herausforderung und Lösung**  
-Viele Web-Musikplayer setzen auf Mausinteraktion, was für Nutzer*innen mit motorischen Einschränkungen eine erhebliche Barriere darstellt. Um vollständige Tastaturbedienbarkeit sicherzustellen, werden alle zentralen Funktionen (Play, Pause, Skip, Lautstärke) über `keydown`-Events realisiert. Die Funktionen dürfen dabei keine pfadabhängigen Eingaben erfordern, sondern müssen punktuell auslösbar sein (z. B. per Enter oder Leertaste).
+HTML bietet zwar standardmäßig eine Tab-Navigation, doch sobald individuelle UI-Komponenten wie modale Fenster, Slider oder strukturierte Player-Bereiche eingebaut werden, entstehen Fokusfallen und unlogische Navigationspfade. Um eine barrierefreie Bedienung sicherzustellen, muss die Tab-Reihenfolge manuell gesteuert, Fokuswechsel gezielt programmiert und ESC- bzw. Rücksprungrouten implementiert werden.
 
 **Was wird benötigt?**  
-- JavaScript-Ereignissteuerung (`keydown`, `keyup`)  
-- HTML-Semantik mit klaren Rollen (`button`, `audio`)  
-- Barrierefreie Eventbindung ohne Mausabhängigkeit
+- Verwendung von `tabindex`, `autofocus` und `focus()`-Methoden  
+- Sichtbare Fokusanzeige über CSS (`:focus-visible`)  
+- Logische DOM-Struktur zur natürlichen Tabreihenfolge  
+- `keydown`-Eventsteuerung für Escape-Funktionen (z. B. Schließen von Overlays)
 
 **Erfolgskriterien**  
-- Jede Funktion des Players ist über die Tastatur auslösbar, ohne Timing-Anforderungen.  
-- Es existieren keine exklusiven Mausfunktionen.  
-- Interaktionen erfolgen eindeutig über Tastendruck.
+- Jede interaktive Komponente ist per Tab erreichbar und per Tab/Shift+Tab wieder verlassbar  
+- Fokusverlauf entspricht der visuellen und funktionalen Struktur  
+- Fokusindikator ist stets sichtbar und deutlich erkennbar  
+- Modale Komponenten (z. B. Dialoge) sind als Fokus-Falle korrekt implementiert
 
 **Fehlerkriterien**  
-- Eine Funktion ist ausschließlich über Mausklick erreichbar.  
-- Eingaben benötigen pfadabhängige Bewegung (z. B. Drag & Drop), ohne Alternative.
-
-**Quelle**
-https://www.w3.org/WAI/WCAG22/Understanding/keyboard
+- Fokus bleibt in einem Element „stecken“ oder springt unlogisch  
+- Fokus verlässt die Seite (z. B. ins Nichts)  
+- Wichtige Funktionen sind per Tastatur nicht erreichbar  
+- Der Fokus ist unsichtbar oder auf mobilen Geräten nicht nachvollziehbar
 
 ---
 
-## 2 – Fokusverlassen per Tastatur
+## POC 2 – Globale Tastatursteuerung (Shortcuts vs. Standardverhalten)
 
 **Herausforderung und Lösung**  
-Viele Anwendungen lassen Nutzer*innen in modalen Fenstern oder Komponenten „stecken“. Die Herausforderung besteht darin, dem Fokus immer eine erkennbare Fluchtmöglichkeit zu geben (z. B. über ESC oder logische Tabreihenfolge). Der Player muss gewährleisten, dass jedes UI-Element auch wieder verlassen werden kann.
+Barrierefreie Tastaturbedienung erfordert die Steuerung zentraler Aktionen wie Play/Pause über einfache Tasteneingaben (z. B. Leertaste, Pfeiltasten). Diese Tasten haben jedoch teils Standardverhalten (z. B. Scrollen mit der Leertaste), was zu Konflikten führen kann. Die Herausforderung besteht darin, Tasteneingaben nur zielgerichtet und kontextabhängig abzufangen, ohne unerwünschte Nebeneffekte oder Einschränkungen zu erzeugen.
 
 **Was wird benötigt?**  
-- Fokussteuerung via `tabindex` und `eventListeners`  
-- ESC-Handling zum Schließen von Overlays/Dialogen  
-- Sichtbarer Fokusindikator
+- Globales `keydown`-Event auf `document` oder `window`  
+- `event.preventDefault()` gezielt anwenden  
+- Kontextprüfung (z. B. ist ein Eingabefeld aktiv?)  
+- Modularer Aufbau eines zentralen Key-Handler-Moduls
 
 **Erfolgskriterien**  
-- Alle UI-Komponenten sind über Tab oder ESC verlassbar.  
-- Bei Spezialbedienung wird die Exit-Methode deutlich kommuniziert.
+- Tasten wie Leertaste oder Pfeiltasten lösen Funktionen nur aus, wenn kontextuell sinnvoll  
+- Seiten-Scrollen, Formulareingaben und andere Standardverhalten bleiben erhalten, wo nötig  
+- Tastatursteuerung funktioniert auf allen Seiten/Komponenten konsistent
 
 **Fehlerkriterien**  
-- Fokus bleibt in einer Komponente stecken.  
-- Kein Hinweis auf notwendige Tastenkombinationen zum Verlassen.
-
-**Quelle**
-https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html
+- Leertaste oder andere Keys blockieren gewünschte Standardverhalten ohne Kontext  
+- Ungewollte Interaktionen (z. B. Play/Pause springt im falschen Zustand an)  
+- Mehrfache Events bei gedrückter Taste (z. B. Wiederholung durch Key Repeat)
 
 ---
 
-## 3 – Fokusführung und Tab-Reihenfolge
+## POC 3 – Zustandsmanagement des Players
 
 **Herausforderung und Lösung**  
-Die Tastaturnavigation muss logisch und vorhersehbar sein, um Nutzer*innen Orientierung zu geben. Durch konsistente `tabindex`-Werte und eine intuitive Reihenfolge kann die Bedienung effizient erfolgen, ohne Verwirrung oder Sprünge.
+Ein zugänglicher Musikplayer muss jederzeit zuverlässig anzeigen, in welchem Zustand er sich befindet (z. B. „Wiedergabe läuft“, „Fehler beim Laden“, „abgeschlossen“). Gerade bei rein tastaturbedienter Nutzung ist es essenziell, diese Zustände programmatisch zu verwalten und visuell sowie semantisch darzustellen. HTML-Audio-Elemente liefern viele Events, die sauber interpretiert und im Interface abgebildet werden müssen.
 
 **Was wird benötigt?**  
-- HTML-Struktur mit klarer visueller und semantischer Reihenfolge  
-- Test mit Tastatur-Navigation (Tab/Shift+Tab)  
-- Fokus-Indikator per CSS (`:focus-visible`)
+- Event-Handling für `play`, `pause`, `ended`, `error`, `canplay`, `waiting`  
+- Eigener State-Manager (z. B. per JS-Objekt oder Reactive State)  
+- Visuelles Feedback (z. B. Play/Pause-Symbol, Fehlerhinweis)  
+- Optional: ARIA Live Regions zur sprachlichen Rückmeldung (z. B. für Screenreader)
 
 **Erfolgskriterien**  
-- Die Reihenfolge entspricht der visuellen Struktur.  
-- Die gesamte Oberfläche ist über Tab erreichbar.
+- Der aktuelle Zustand ist intern gespeichert und korrekt im UI dargestellt  
+- Fehlerzustände werden angezeigt (z. B. bei nicht ladbaren Audiodateien)  
+- Alle Zustände sind auch ohne Maus eindeutig bedienbar und nachvollziehbar  
+- Screenreader-Nutzer*innen erhalten akustisches Feedback bei Statuswechsel
 
 **Fehlerkriterien**  
-- Fokus springt unlogisch oder verlässt den sichtbaren Bereich.  
-- Wichtige Bedienelemente sind nicht fokussierbar.
-
----
-
-## 4 – Fehlerbehandlung in Formularen
-
-**Herausforderung und Lösung**  
-Nutzer*innen müssen bei Fehleingaben klare, barrierefreie Rückmeldungen erhalten. Die Herausforderung besteht darin, sowohl visuelles als auch semantisches Feedback zu geben (Farben + Screenreader-Feedback). Fehlermeldungen müssen verständlich, spezifisch und erreichbar sein.
-
-**Was wird benötigt?**  
-- ARIA-Attribute (`aria-describedby`, `role="alert"`)  
-- Sichtbare Fehlermarkierung (z. B. Kontraste, Icons)  
-- Feldprüfung vor Absenden des Formulars
-
-**Erfolgskriterien**  
-- Fehler werden sofort und eindeutig benannt.  
-- Fehlerzustand ist visuell und semantisch klar erkennbar.
-
-**Fehlerkriterien**  
-- Fehler werden nicht erkannt oder unklar beschrieben.  
-- Screenreader erhalten keine Information zum Fehler.
-
----
-
-## 5 – Sichtbarer Fokuszustand
-
-**Herausforderung und Lösung**  
-Gerade bei visuellen Einschränkungen ist ein klar sichtbarer Fokuszustand essenziell. Viele Frameworks entfernen standardmäßig die Fokusumrandung (`outline: none`). Ziel ist es, einen konsistenten und barrierefreien Fokusindikator zu gestalten, der auf allen Oberflächen gut erkennbar ist.
-
-**Was wird benötigt?**  
-- CSS `:focus-visible`, `outline`, `box-shadow`  
-- Kontrasttests auf verschiedenen Hintergründen
-
-**Erfolgskriterien**  
-- Der aktuelle Fokus ist auf jedem Element klar sichtbar.  
-- Fokusindikator ist farblich und stilistisch eindeutig.
-
-**Fehlerkriterien**  
-- Fokus ist nicht sichtbar oder verschwindet bei bestimmten Elementen.  
-- Der Fokusindikator ist zu dezent und auf manchen Hintergründen nicht unterscheidbar.
-
----
-
-## 6 – Keine automatischen Aktionen bei Formulareingaben
-
-**Herausforderung und Lösung**  
-Formulareingaben (z. B. Lautstärke, Suchfelder) dürfen nicht automatisch zu Aktionen führen, ohne dass Nutzer*innen sie bewusst bestätigen. Automatische Änderungen können bei assistiver Bedienung zu Kontrollverlust führen.
-
-**Was wird benötigt?**  
-- Keine `onchange`-Ereignisse ohne zusätzliche Bestätigung (z. B. Button oder Enter)  
-- Trennung zwischen Eingabe und Ausführung
-
-**Erfolgskriterien**  
-- Keine automatischen Reaktionen beim Tippen oder Fokussieren.  
-- Änderungen erfordern bewusste Eingabeaktion.
-
-**Fehlerkriterien**  
-- Felder lösen direkt Aktionen aus.  
-- Nutzer*innen verlieren die Kontrolle über den Prozess.
-
----
-
-## 7 – Webnutzung ohne Setup oder Zusatzgeräte
-
-**Herausforderung und Lösung**  
-Die Anwendung soll sofort im Browser funktionieren, ohne externe Geräte oder komplizierte Installationsprozesse. Ziel ist eine barrierearme Nutzung direkt über die Tastatur, ohne Konfigurationsaufwand.
-
-**Was wird benötigt?**  
-- Reines Web-Setup (HTML5, CSS, JavaScript)  
-- Kein Login oder Benutzerkonto notwendig  
-- Datenhaltung lokal (z. B. `localStorage`)
-
-**Erfolgskriterien**  
-- Die Anwendung ist direkt im Browser nutzbar.  
-- Keine Installation, kein Plugin, kein technisches Setup nötig.
-
-**Fehlerkriterien**  
-- Die Anwendung ist ohne externe Hilfe oder Einrichtung nicht nutzbar.  
-- Zusätzliche Geräte oder Registrierung sind erforderlich.
-
----
+- Zustand ist uneindeutig oder bleibt im „Zwischenmodus“ hängen  
+- Play/Pause-Toggles verhalten sich inkonsistent oder aktualisieren das UI nicht korrekt  
+- Fehler (z. B. Datei nicht gefunden) bleiben ohne Feedback oder führen zu Blockaden
