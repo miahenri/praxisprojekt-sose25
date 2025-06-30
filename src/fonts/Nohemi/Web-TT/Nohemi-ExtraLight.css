@@ -1,0 +1,12 @@
+/* Webfont: Nohemi-ExtraLight */@font-face {
+    font-family: 'NohemiExtLt';
+    src: url('Nohemi-ExtraLight.eot'); /* IE9 Compat Modes */
+    src: url('Nohemi-ExtraLight.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('Nohemi-ExtraLight.woff') format('woff'), /* Modern Browsers */
+         url('Nohemi-ExtraLight.woff2') format('woff2'), /* Modern Browsers */
+         url('Nohemi-ExtraLight.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

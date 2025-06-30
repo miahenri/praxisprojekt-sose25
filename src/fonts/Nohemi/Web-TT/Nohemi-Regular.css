@@ -1,0 +1,12 @@
+/* Webfont: Nohemi-Regular */@font-face {
+    font-family: 'Nohemi';
+    src: url('Nohemi-Regular.eot'); /* IE9 Compat Modes */
+    src: url('Nohemi-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('Nohemi-Regular.woff') format('woff'), /* Modern Browsers */
+         url('Nohemi-Regular.woff2') format('woff2'), /* Modern Browsers */
+         url('Nohemi-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
