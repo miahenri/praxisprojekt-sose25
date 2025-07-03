@@ -7,6 +7,18 @@
     body { font-family: sans-serif; padding: 2rem; }
     button { font-size: 1.2rem; padding: 0.5rem 1rem; }
     #status { margin-top: 1rem; }
+    #progress-container {
+      margin-top: 1rem;
+      width: 100%;
+      max-width: 400px;
+    }
+    input[type="range"] {
+      width: 100%;
+    }
+    #time-display {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
@@ -17,6 +29,11 @@
 
   <div style="margin-top: 1rem;">
     <button id="playPauseBtn" disabled>Play</button>
+  </div>
+
+  <div id="progress-container" hidden>
+    <input type="range" id="progressBar" min="0" value="0" step="0.1" />
+    <div id="time-display">00:00 / 00:00</div>
   </div>
 
   <div id="status" aria-live="polite" role="status"></div>
