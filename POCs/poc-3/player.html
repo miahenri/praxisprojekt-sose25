@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Barrierefreier Audio Player</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    button { font-size: 1.2rem; padding: 0.5rem 1rem; }
+    #status { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Barrierefreier Audio Player</h1>
+
+  <label for="fileInput">MP3-Datei auswählen:</label>
+  <input type="file" id="fileInput" accept="audio/mpeg" />
+
+  <div style="margin-top: 1rem;">
+    <button id="playPauseBtn" disabled>Play</button>
+  </div>
+
+  <div id="status" aria-live="polite" role="status"></div>
+
+  <audio id="audioElement"></audio>
+</body>
+<script src="./player.js" defer></script>
+</html>
