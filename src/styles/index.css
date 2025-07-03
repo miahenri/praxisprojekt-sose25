@@ -1,0 +1,22 @@
+html {
+    background: linear-gradient(
+    135deg,               /* Richtung: von links oben nach rechts unten */
+    var(--color-green-dark) 0%,           /* Startfarbe */
+    var(--color-green-dark) 22%,          /* Bis 22% bleibt es die gleiche Farbe */
+    var(--color-green-light) 100%          /* Dann Übergang zur Endfarbe */
+  );
+
+  color: var(--color-lightest);
+  font-family: var(--ff-primary);
+  font-size: var(--fs-s);
+}
+
+header {
+    h1 {
+        color: var(--color-lightest);
+    }
+
+    a {
+        color: var(--color-lightest);
+    }
+}

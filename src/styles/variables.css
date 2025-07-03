@@ -1,0 +1,35 @@
+:root {
+    --color-green-dark: rgb(22, 50, 0);
+    --color-green-light: rgb(71, 82, 63);
+    --color-yellow: rgb(242, 221, 114);
+    --color-lightest: rgb(245, 245, 245);
+
+    --ff-primary: 'Inter', sans-serif;
+    --ff-logo: 'Nohemi', sans-serif;
+
+    --lh-tight: 100%;
+    --lh-normal: 130%;
+    --lh-loose: 150%;
+
+    --fw-light: 300;
+    --fw-bold: 700;
+    --fw-black: 900;
+
+    --fs-xs: 16px;
+    --fs-s: 20px;
+    --fs-m: 24px;
+    --fs-l: 32px;
+    --fs-xl: 48px;
+    --fs-xxl: 96px;
+
+    --xs: 14px;
+    --s: 26px;
+    --m: 32px;
+    --l: 50px;
+    --xl: 64px;
+    --xxl: 126px;
+
+    --eighth: calc(var(--m) / 8);
+    --quarter: calc(var(--m) / 4);
+    --half: calc(var(--m) / 2);
+}

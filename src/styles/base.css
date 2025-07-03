@@ -1,0 +1,29 @@
+html {
+    background-color: var(--color-lightest);
+}
+
+h1 {
+    font-family: var(--ff-logo);
+    font-size: var(--fs-l);
+    font-weight: var(--fw-black);
+    color: var(--color-green-dark);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: var(--s) var(--l);
+
+    nav {
+        display: flex;
+        gap: var(--l);
+    }
+
+    a {
+        text-decoration: underline;
+        font-family: var(--ff-primary);
+        font-size: var(--fs-s);
+        font-weight: var(--fw-bold);
+    }
+}
