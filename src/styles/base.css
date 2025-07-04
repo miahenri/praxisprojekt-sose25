@@ -1,5 +1,11 @@
 html {
     background-color: var(--color-lightest);
+    font-family: var(--ff-primary);
+    font-size: var(--fs-);
+}
+
+body {
+    margin: var(--s) var(--l);
 }
 
 h1 {
@@ -13,7 +19,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: var(--s) var(--l);
 
     nav {
         display: flex;

@@ -2,4 +2,93 @@ header {
     a{
         color: var(--color-green-dark);
     }
+
+    margin-bottom: var(--xxl);
+}
+
+h2 {
+    font-size: var(--m);
+    font-weight: var(--fw-bold);
+    color: var(--color-green-dark);
+}
+
+.player-grid {
+    display: grid;
+    grid-gap: 32px;
+    grid-template-columns: 1fr 1.645fr 1fr;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 0.514fr);
+
+
+    .cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;    
+    }
+}
+
+.player-grid > * {
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    color: var(--color-lightest);
+    background-color: var(--color-green-dark);
+}
+
+.track-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+
+    > * {
+        padding-left: var(--m);
+        padding-right: var(--m);
+    }
+
+    h3 { 
+        font-size: var(--fs-xl);
+        font-weight: var(--fw-bold);
+        padding-top: var(--m);
+        color: var(--color-yellow);
+    }
+
+    .track-details {
+        padding-bottom: var(--m);
+
+        .artist {
+            font-size: var(--fs-m);
+            font-weight: var(--fw-bold);
+            margin-bottom: 5px;
+        }
+
+        .album {
+            font-size: var(--fs-m);
+            font-weight: var(--fw-light);
+        }
+    }
+}
+
+.button-group {
+    display: grid;
+    grid-gap: 32px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: var(--color-lightest);
+
+    > * {
+        border-radius: 20px;
+    }
+}
+
+button {
+    width: 100%;
+    height: 100%;
+    color: var(--color-lightest);
+    background-color: var(--color-green-dark);
+}
+
+.play-pause-btn {
+    border-radius: 20px;
+    font-size: var(--fs-xxl);
+    font-weight: var(--fw-black);
 }

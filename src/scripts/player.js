@@ -51,13 +51,13 @@ const fileInput = document.getElementById('fileInput');
 
     audio.addEventListener('play', () => {
       playerState.playing = true;
-      playPauseBtn.textContent = "Pause";
+      playPauseBtn.textContent = "PAUSE";
       status.textContent = "Wiedergabe läuft";
     });
 
     audio.addEventListener('pause', () => {
       playerState.playing = false;
-      playPauseBtn.textContent = "Play";
+      playPauseBtn.textContent = "PLAY";
       status.textContent = "Wiedergabe pausiert";
     });
 
