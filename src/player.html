@@ -22,10 +22,10 @@
             <div class="player-grid">
             <img class="cover" src="../assets/images/placeholder-cover.png" alt="Album Cover" class="album-cover">
             <div class="track-info">
-                <h3>Titel</h3>
+                <h3 id="js-title">Titel</h3>
                 <div class="track-details">
-                    <p class="artist">Interpret</p>
-                    <p class="album">Album</p>
+                    <p class="artist" id="js-artist">Interpret</p>
+                    <p class="album" id="js-album">Album</p>
                 </div>
             </div>
 
@@ -52,5 +52,6 @@
 
             <audio id="audioElement"></audio>
         </main>
+        <script src="./scripts/jsmediatags.min.js"></script>
         <script src="./scripts/player.js" defer></script>
 </html>
