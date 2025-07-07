@@ -1,21 +1,21 @@
-const fileInput = document.getElementById('fileInput');
-const playPauseBtn = document.getElementById('playPauseBtn');
-const audio = document.getElementById('audioElement');
-const status = document.getElementById('status');
-const progressBar = document.getElementById('progressBar');
-const progressContainer = document.getElementById('progress-container');
-const timeDisplay = document.getElementById('time-display');
-const coverImage = document.querySelector('.cover');
-const titleElement = document.getElementById('js-title');
-const artistElement = document.getElementById('js-artist');
-const albumElement = document.getElementById('js-album');
+const fileInput = document.getElementById("fileInput");
+const playPauseBtn = document.getElementById("playPauseBtn");
+const audio = document.getElementById("audioElement");
+const status = document.getElementById("status");
+const progressBar = document.getElementById("progressBar");
+const progressContainer = document.getElementById("progress-container");
+const timeDisplay = document.getElementById("time-display");
+const coverImage = document.querySelector(".cover");
+const titleElement = document.getElementById("js-title");
+const artistElement = document.getElementById("js-artist");
+const albumElement = document.getElementById("js-album");
 
 const playerState = {
   playing: false,
-  error: false
+  error: false,
 };
 
-fileInput.addEventListener('change', () => {
+fileInput.addEventListener("change", () => {
   const file = fileInput.files[0];
 
   if (file) {
@@ -28,7 +28,7 @@ fileInput.addEventListener('change', () => {
 
     // Metadaten auslesen mit jsmediatags
     jsmediatags.read(file, {
-      onSuccess: function(tag) {
+      onSuccess: function (tag) {
         const tags = tag.tags;
         titleElement.textContent = tags.title || "Unbekannter Titel";
         artistElement.textContent = tags.artist || "Unbekannter Interpret";
@@ -44,72 +44,72 @@ fileInput.addEventListener('change', () => {
           coverImage.src = "../assets/images/placeholder-cover.png";
         }
       },
-      onError: function(error) {
+      onError: function (error) {
         console.error("Fehler beim Auslesen der Tags:", error);
         titleElement.textContent = "Unbekannter Titel";
         artistElement.textContent = "Unbekannter Interpret";
         albumElement.textContent = "Unbekanntes Album";
         coverImage.src = "../assets/images/placeholder-cover.png";
-      }
+      },
     });
   }
 });
 
-playPauseBtn.addEventListener('click', () => {
+playPauseBtn.addEventListener("click", () => {
   if (playerState.playing) {
     audio.pause();
   } else {
-    audio.play().catch(err => {
+    audio.play().catch((err) => {
       status.textContent = "Fehler beim Abspielen: " + err.message;
       playerState.error = true;
     });
   }
 });
 
-audio.addEventListener('loadedmetadata', () => {
+audio.addEventListener("loadedmetadata", () => {
   progressBar.max = audio.duration;
   updateTimeDisplay();
   progressContainer.hidden = false;
 });
 
-audio.addEventListener('timeupdate', () => {
+audio.addEventListener("timeupdate", () => {
   progressBar.value = audio.currentTime;
   updateTimeDisplay();
 });
 
-progressBar.addEventListener('input', () => {
+progressBar.addEventListener("input", () => {
   audio.currentTime = progressBar.value;
 });
 
-audio.addEventListener('play', () => {
+audio.addEventListener("play", () => {
   playerState.playing = true;
   playPauseBtn.textContent = "PAUSE";
   status.textContent = "Wiedergabe läuft";
 });
 
-audio.addEventListener('pause', () => {
+audio.addEventListener("pause", () => {
   playerState.playing = false;
   playPauseBtn.textContent = "PLAY";
   status.textContent = "Wiedergabe pausiert";
 });
 
-audio.addEventListener('ended', () => {
+audio.addEventListener("ended", () => {
   playerState.playing = false;
   playPauseBtn.textContent = "Play";
   status.textContent = "Wiedergabe abgeschlossen";
 });
 
-audio.addEventListener('waiting', () => {
+audio.addEventListener("waiting", () => {
   status.textContent = "Lade...";
 });
 
-audio.addEventListener('canplay', () => {
+audio.addEventListener("canplay", () => {
   if (!playerState.playing && !playerState.error) {
     status.textContent = "Bereit zum Abspielen";
   }
 });
 
-audio.addEventListener('error', () => {
+audio.addEventListener("error", () => {
   playerState.error = true;
   playPauseBtn.disabled = true;
   status.textContent = "Fehler beim Laden der Audiodatei";
@@ -118,7 +118,9 @@ audio.addEventListener('error', () => {
 function formatTime(seconds) {
   const min = Math.floor(seconds / 60);
   const sec = Math.floor(seconds % 60);
-  return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+  return `${min.toString().padStart(2, "0")}:${sec
+    .toString()
+    .padStart(2, "0")}`;
 }
 
 function updateTimeDisplay() {
