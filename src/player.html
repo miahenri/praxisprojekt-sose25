@@ -162,6 +162,7 @@
 
       <div id="progress-container" hidden>
         <input
+          class="progressbar"
           type="range"
           id="progressBar"
           min="0"
@@ -169,7 +170,10 @@
           step="0.1"
           aria-label="Song Progress"
         />
-        <div id="time-display">00:00 / 00:00</div>
+        <div class="time-display" id="time-display">
+          <p id="current-time">00:00</p> 
+          <p id="duration">00:00</p>
+        </div>
       </div>
 
       <div id="status" aria-live="polite" role="status"></div>

@@ -5,6 +5,8 @@ const status = document.getElementById("status");
 const progressBar = document.getElementById("progressBar");
 const progressContainer = document.getElementById("progress-container");
 const timeDisplay = document.getElementById("time-display");
+const currentTimeDisplay = document.getElementById("current-time");
+const durationDisplay = document.getElementById("duration");
 const coverImage = document.querySelector(".cover");
 const titleElement = document.getElementById("js-title");
 const artistElement = document.getElementById("js-artist");
@@ -126,5 +128,6 @@ function formatTime(seconds) {
 function updateTimeDisplay() {
   const current = formatTime(audio.currentTime);
   const total = isNaN(audio.duration) ? "00:00" : formatTime(audio.duration);
-  timeDisplay.textContent = `${current} / ${total}`;
+  currentTimeDisplay.textContent = current;
+  durationDisplay.textContent = total;
 }

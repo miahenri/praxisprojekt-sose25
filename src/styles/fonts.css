@@ -12,8 +12,9 @@
 }
 
 @font-face {
-  font-family: "Nohemi";
-  src: url("../fonts/Nohemi/Variable-TT/Nohemi-VF.ttf") format("truetype");
-  font-weight: 100 900; /* Variable Font unterstützt Gewichte von 100 bis 900 */
-  font-style: italic;
+  font-family: 'Nohemi';
+  src: url('../fonts/Nohemi/Web-TT/Nohemi-Black.woff2') format('woff2'),
+       url('../fonts/Nohemi/Web-TT/Nohemi-Black.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
 }
