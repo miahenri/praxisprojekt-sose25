@@ -1,5 +1,7 @@
 const fileInput = document.getElementById("fileInput");
 const playPauseBtn = document.getElementById("playPauseBtn");
+const quieterBtn = document.getElementById("leiser-btn");
+const louderBtn = document.getElementById("lauter-btn");
 const audio = document.getElementById("audioElement");
 const status = document.getElementById("status");
 const progressBar = document.getElementById("progressBar");
@@ -66,6 +68,16 @@ playPauseBtn.addEventListener("click", () => {
       playerState.error = true;
     });
   }
+});
+
+quieterBtn.addEventListener("click", () => {
+  audio.volume = Math.max(0, audio.volume - 0.1);
+  console.log(`Lautstärke: ${Math.round(audio.volume * 100)}%`);
+});
+
+louderBtn.addEventListener("click", () => {
+  audio.volume = Math.min(1, audio.volume + 0.1);
+  console.log(`Lautstärke: ${Math.round(audio.volume * 100)}%`);
 });
 
 audio.addEventListener("loadedmetadata", () => {
