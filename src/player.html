@@ -16,7 +16,7 @@
     </header>
     <main>
       <label for="fileInput">MP3-Datei auswählen:</label>
-      <input type="file" id="fileInput" accept="audio/mpeg" />
+      <input class="file-input" type="file" id="fileInput" accept="audio/mpeg" />
 
       <h2>Sie hören:</h2>
       <div class="player-grid">
@@ -129,11 +129,9 @@
             />
           </svg>
         </button>
-        <div>
-          <button class="play-pause-btn" id="playPauseBtn" disabled>
-            PLAY
-          </button>
-        </div>
+        <button class="play-pause-btn" id="playPauseBtn" disabled>
+          PLAY
+        </button>
         <button id="forward-btn" class="button">
           <svg
             width="92"
@@ -171,7 +169,7 @@
           aria-label="Song Progress"
         />
         <div class="time-display" id="time-display">
-          <p id="current-time">00:00</p> 
+          <p id="current-time">00:00</p>
           <p id="duration">00:00</p>
         </div>
       </div>

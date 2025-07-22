@@ -7,9 +7,19 @@ header {
 }
 
 h2 {
-  font-size: var(--m);
+  font-size: var(--fs-s);
   font-weight: var(--fw-bold);
   color: var(--color-green-dark);
+  margin-bottom: var(--xs);
+}
+
+.file-input { /* Rausnehmen, wenn Warteliste implementiert ist */
+  display: block;
+  margin-bottom: var(--s);
+  font-size: var(--fs-s);
+  color: var(--color-green-dark);
+  border-radius: 5px;
+  padding: var(--eighth);
 }
 
 .player-grid {
@@ -172,3 +182,7 @@ button {
   margin-top: var(--xxs);
 }
 
+:focus {
+  outline: 3px solid var(--color-green-dark);
+  outline-offset: 2px;
+}

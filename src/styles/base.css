@@ -30,5 +30,7 @@ header {
     font-family: var(--ff-primary);
     font-size: var(--fs-s);
     font-weight: var(--fw-bold);
+    border-radius: 5px;
+    padding: var(--quarter) var(--quarter);
   }
 }
