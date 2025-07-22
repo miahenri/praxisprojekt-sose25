@@ -1,0 +1,34 @@
+html {
+  background-color: var(--color-lightest);
+  font-family: var(--ff-primary);
+  font-size: var(--fs-);
+}
+
+body {
+  margin: var(--s) var(--l);
+}
+
+h1 {
+  font-family: var(--ff-logo);
+  font-size: var(--fs-l);
+  font-weight: var(--fw-black);
+  color: var(--color-green-dark);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  nav {
+    display: flex;
+    gap: var(--l);
+  }
+
+  a {
+    text-decoration: underline;
+    font-family: var(--ff-primary);
+    font-size: var(--fs-s);
+    font-weight: var(--fw-bold);
+  }
+}
