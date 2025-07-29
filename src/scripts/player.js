@@ -2,6 +2,8 @@ const fileInput = document.getElementById("fileInput");
 const playPauseBtn = document.getElementById("playPauseBtn");
 const quieterBtn = document.getElementById("leiser-btn");
 const louderBtn = document.getElementById("lauter-btn");
+const loopBtn = document.getElementById("loop-btn");
+let isLooping = false;
 const audio = document.getElementById("audioElement");
 const status = document.getElementById("status");
 const progressBar = document.getElementById("progressBar");
@@ -143,3 +145,22 @@ function updateTimeDisplay() {
   currentTimeDisplay.textContent = current;
   durationDisplay.textContent = total;
 }
+
+const loopOffIcon = `
+<svg width="47" height="53" viewBox="0 0 47 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M34.6429 20.875L43 12.4375M43 12.4375L34.6429 4M43 12.4375L4 12.4375V20.875M12.3571 32.125L4 40.5625M4 40.5625L12.3571 49M4 40.5625L43 40.5625V32.125"
+    stroke="#F5F5F5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+const loopOnIcon = `
+<svg width="47" height="60" viewBox="0 0 47 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M34.6429 20.875L43 12.4375M43 12.4375L34.6429 4M43 12.4375L4 12.4375V20.875M12.3571 32.125L4 40.5625M4 40.5625L12.3571 49M4 40.5625L43 40.5625V32.125" stroke="#F5F5F5" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="24.5" cy="55.5" r="4.5" fill="#F5F5F5"/>
+</svg>`;
+
+loopBtn.addEventListener("click", () => {
+  isLooping = !isLooping;
+  audio.loop = isLooping;
+  loopBtn.innerHTML = isLooping ? loopOnIcon : loopOffIcon;
+  status.textContent = isLooping ? "Loop aktiviert" : "Loop deaktiviert";
+});
