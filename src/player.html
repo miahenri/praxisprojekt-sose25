@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -5,16 +6,17 @@
     <title>MILO</title>
     <link rel="stylesheet" href="./styles/combined.css" />
     <link rel="stylesheet" href="./styles/player.css" />
+    <link rel="icon" href="../favicon.ico" />
   </head>
   <body>
-    <header>
+    <header aria-label="Header">
       <h1>milo</h1>
-      <nav>
+      <nav aria-label="Navigation">
         <a href="/über-uns" class="button">Über uns</a>
         <a href="/anleitung" class="button">Anleitung</a>
       </nav>
     </header>
-    <main>
+    <main aria-label="Musik-Player">
       <label for="fileInput">MP3-Datei auswählen:</label>
       <input class="file-input" type="file" id="fileInput" accept="audio/mpeg" />
 
@@ -29,13 +31,13 @@
         <div class="track-info">
           <h3 id="js-title">Titel</h3>
           <div class="track-details">
-            <p class="artist" id="js-artist">Interpret</p>
-            <p class="album" id="js-album">Album</p>
+            <p class="artist" id="js-artist" aria-label="Interpret">Interpret</p>
+            <p class="album" id="js-album" aria-label="Album">Album</p>
           </div>
         </div>
 
         <div class="button-group">
-          <button id="warteschlange-btn" class="button">
+          <button id="warteschlange-btn" class="button" aria-label="Warteschlange">
             <svg
               width="54"
               height="48"
@@ -52,7 +54,7 @@
               />
             </svg>
           </button>
-          <button id="loop-btn" class="button">
+          <button id="loop-btn" class="button" aria-label="Loop">
             <svg
               width="47"
               height="53"
@@ -69,7 +71,7 @@
               />
             </svg>
           </button>
-          <button id="leiser-btn" class="button">
+          <button id="leiser-btn" class="button" aria-label="Leiser">
             <svg
               width="49"
               height="48"
@@ -86,7 +88,7 @@
               />
             </svg>
           </button>
-          <button id="lauter-btn" class="button">
+          <button id="lauter-btn" class="button" aria-label="Lauter">
             <svg
               width="59"
               height="50"
@@ -105,7 +107,7 @@
           </button>
         </div>
 
-        <button id="back-btn" class="button">
+        <button id="back-btn" class="button" aria-label="Zurück">
           <svg
             width="92"
             height="72"
@@ -132,7 +134,7 @@
         <button class="play-pause-btn" id="playPauseBtn" disabled>
           PLAY
         </button>
-        <button id="forward-btn" class="button">
+        <button id="forward-btn" class="button" aria-label="Vorwärts">
           <svg
             width="92"
             height="72"
@@ -174,7 +176,7 @@
         </div>
       </div>
 
-      <div id="status" aria-live="polite" role="status"></div>
+      <div id="status" aria-live="polite" role="status" aria-label="Wiedergabe-Status"></div>
 
       <audio id="audioElement"></audio>
     </main>
