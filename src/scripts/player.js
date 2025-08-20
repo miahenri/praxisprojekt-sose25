@@ -164,3 +164,51 @@ loopBtn.addEventListener("click", () => {
   loopBtn.innerHTML = isLooping ? loopOnIcon : loopOffIcon;
   status.textContent = isLooping ? "Loop aktiviert" : "Loop deaktiviert";
 });
+
+document.addEventListener("keydown", (event) => {
+  // Wenn der Fokus gerade auf einem Eingabefeld liegt: nichts tun
+  const tag = event.target.tagName.toLowerCase();
+  if (tag === "input" || tag === "textarea") return;
+
+  switch (event.key) {
+    case " ": // Leertaste
+      event.preventDefault(); // Verhindert Scrollen
+      if (!playPauseBtn.disabled) {
+        playPauseBtn.click();
+      }
+      break;
+
+    case "ArrowRight":
+      audio.currentTime = Math.min(audio.duration, audio.currentTime + 5);
+      status.textContent = "5 Sekunden vorgespult";
+      break;
+
+    case "ArrowLeft":
+      audio.currentTime = Math.max(0, audio.currentTime - 5);
+      status.textContent = "5 Sekunden zurückgespult";
+      break;
+
+    case "ArrowUp":
+      event.preventDefault(); // Verhindert Scrollen
+      audio.volume = Math.min(1, audio.volume + 0.1);
+      status.textContent = `Lautstärke: ${Math.round(audio.volume * 100)}%`;
+      break;
+
+    case "ArrowDown":
+      event.preventDefault(); // Verhindert Scrollen
+      audio.volume = Math.max(0, audio.volume - 0.1);
+      status.textContent = `Lautstärke: ${Math.round(audio.volume * 100)}%`;
+      break;
+
+    case "l":
+    case "L":
+      loopBtn.click(); // Löst dieselbe Funktion aus wie Mausklick auf Loop-Button
+      break;
+
+    case "m":
+    case "M":
+      audio.muted = !audio.muted;
+      status.textContent = audio.muted ? "Ton aus" : "Ton an";
+      break;
+  }
+});
