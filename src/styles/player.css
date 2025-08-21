@@ -184,6 +184,6 @@ button {
 }
 
 :focus {
-  outline: 3px solid var(--color-green-dark);
+  outline: 4px solid var(--color-green-dark);
   outline-offset: 2px;
 }

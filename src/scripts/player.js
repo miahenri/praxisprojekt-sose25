@@ -213,3 +213,9 @@ document.addEventListener("keydown", (event) => {
       break;
   }
 });
+
+document.querySelectorAll('button').forEach((btn) => {
+  btn.addEventListener('click', function () {
+    this.focus(); // erzwingt Fokus beim Mausklick
+  });
+});
