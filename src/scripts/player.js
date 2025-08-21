@@ -161,6 +161,7 @@ const loopOnIcon = `
 loopBtn.addEventListener("click", () => {
   isLooping = !isLooping;
   audio.loop = isLooping;
+  loopBtn.setAttribute("aria-pressed", isLooping ? "true" : "false");
   loopBtn.innerHTML = isLooping ? loopOnIcon : loopOffIcon;
   status.textContent = isLooping ? "Loop aktiviert" : "Loop deaktiviert";
 });
