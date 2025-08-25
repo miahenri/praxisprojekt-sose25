@@ -21,6 +21,25 @@ const playerState = {
   error: false,
 };
 
+window.addEventListener("DOMContentLoaded", () => {
+  const fileName = localStorage.getItem("milo-file-name");
+  const fileType = localStorage.getItem("milo-file-type");
+  const savedTime = localStorage.getItem("milo-current-time");
+
+  if (fileName && savedTime) {
+    status.textContent = `Letzter Track: ${fileName}`;
+    // Der Benutzer muss die Datei erneut manuell auswählen:
+    status.textContent += " – bitte Datei erneut auswählen";
+  }
+});
+
+audio.addEventListener("loadedmetadata", () => {
+  const savedTime = parseFloat(localStorage.getItem("milo-current-time"));
+  if (!isNaN(savedTime)) {
+    audio.currentTime = savedTime;
+  }
+});
+
 fileInput.addEventListener("change", () => {
   const file = fileInput.files[0];
 
@@ -31,6 +50,13 @@ fileInput.addEventListener("change", () => {
     playPauseBtn.disabled = false;
     playerState.error = false;
     progressContainer.hidden = true;
+
+    // Speichern Dateiname und Typ
+    localStorage.setItem("milo-file-name", file.name);
+    localStorage.setItem("milo-file-type", file.type);
+
+    // Optional: Speichere als "zuletzt abgespielt"
+    localStorage.setItem("milo-last-played", Date.now().toString());
 
     // Metadaten auslesen mit jsmediatags
     jsmediatags.read(file, {
@@ -91,6 +117,9 @@ audio.addEventListener("loadedmetadata", () => {
 audio.addEventListener("timeupdate", () => {
   progressBar.value = audio.currentTime;
   updateTimeDisplay();
+
+  // Position speichern
+  localStorage.setItem("milo-current-time", audio.currentTime);
 });
 
 progressBar.addEventListener("input", () => {
