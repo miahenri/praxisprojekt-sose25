@@ -15,11 +15,26 @@ const coverImage = document.querySelector(".cover");
 const titleElement = document.getElementById("js-title");
 const artistElement = document.getElementById("js-artist");
 const albumElement = document.getElementById("js-album");
+let queue = [];
+let currentIndex = 0;
+
 
 const playerState = {
   playing: false,
   error: false,
 };
+
+document.getElementById("warteschlange-btn").addEventListener("click", () => {
+  document.getElementById("playerView").style.display = "none";
+  document.getElementById("queueView").style.display = "block";
+  renderQueue(); // Funktion zum Anzeigen der Queue
+});
+
+document.getElementById("backToPlayerBtn").addEventListener("click", () => {
+  document.getElementById("queueView").style.display = "none";
+  document.getElementById("playerView").style.display = "block";
+});
+
 
 window.addEventListener("DOMContentLoaded", () => {
   const fileName = localStorage.getItem("milo-file-name");
@@ -41,51 +56,58 @@ audio.addEventListener("loadedmetadata", () => {
 });
 
 fileInput.addEventListener("change", () => {
-  const file = fileInput.files[0];
+  const files = [...fileInput.files];
 
-  if (file) {
-    const url = URL.createObjectURL(file);
-    audio.src = url;
-    status.textContent = "Datei geladen: " + file.name;
-    playPauseBtn.disabled = false;
-    playerState.error = false;
-    progressContainer.hidden = true;
-
-    // Speichern Dateiname und Typ
-    localStorage.setItem("milo-file-name", file.name);
-    localStorage.setItem("milo-file-type", file.type);
-
-    // Optional: Speichere als "zuletzt abgespielt"
-    localStorage.setItem("milo-last-played", Date.now().toString());
-
-    // Metadaten auslesen mit jsmediatags
-    jsmediatags.read(file, {
-      onSuccess: function (tag) {
-        const tags = tag.tags;
-        titleElement.textContent = tags.title || "Unbekannter Titel";
-        artistElement.textContent = tags.artist || "Unbekannter Interpret";
-        albumElement.textContent = tags.album || "Unbekanntes Album";
-
-        if (tags.picture) {
-          const { data, format } = tags.picture;
-          const byteArray = new Uint8Array(data);
-          const blob = new Blob([byteArray], { type: format });
-          const coverUrl = URL.createObjectURL(blob);
-          coverImage.src = coverUrl;
-        } else {
-          coverImage.src = "../assets/images/placeholder-cover.png";
-        }
-      },
-      onError: function (error) {
-        console.error("Fehler beim Auslesen der Tags:", error);
-        titleElement.textContent = "Unbekannter Titel";
-        artistElement.textContent = "Unbekannter Interpret";
-        albumElement.textContent = "Unbekanntes Album";
-        coverImage.src = "../assets/images/placeholder-cover.png";
-      },
-    });
+  if (files.length > 0) {
+    queue = files;
+    currentIndex = 0;
+    loadTrack(queue[currentIndex]); // nutzt deine bestehende Logik, aber sauber ausgelagert
   }
 });
+
+function loadTrack(file) {
+  const url = URL.createObjectURL(file);
+  audio.src = url;
+  status.textContent = "Datei geladen: " + file.name;
+  playPauseBtn.disabled = false;
+  playerState.error = false;
+  progressContainer.hidden = true;
+
+  localStorage.setItem("milo-file-name", file.name);
+  localStorage.setItem("milo-file-type", file.type);
+  localStorage.setItem("milo-last-played", Date.now().toString());
+
+  jsmediatags.read(file, {
+    onSuccess: function (tag) {
+      const tags = tag.tags;
+      titleElement.textContent = tags.title || "Unbekannter Titel";
+      artistElement.textContent = tags.artist || "Unbekannter Interpret";
+      albumElement.textContent = tags.album || "Unbekanntes Album";
+
+      if (tags.picture) {
+        const { data, format } = tags.picture;
+        const byteArray = new Uint8Array(data);
+        const blob = new Blob([byteArray], { type: format });
+        const coverUrl = URL.createObjectURL(blob);
+        coverImage.src = coverUrl;
+      } else {
+        coverImage.src = "../assets/images/placeholder-cover.png";
+      }
+    },
+    onError: function (error) {
+      console.error("Fehler beim Auslesen der Tags:", error);
+      titleElement.textContent = "Unbekannter Titel";
+      artistElement.textContent = "Unbekannter Interpret";
+      albumElement.textContent = "Unbekanntes Album";
+      coverImage.src = "../assets/images/placeholder-cover.png";
+    },
+  });
+
+  audio.play().catch((err) => {
+    status.textContent = "Fehler beim Abspielen: " + err.message;
+    playerState.error = true;
+  });
+}
 
 playPauseBtn.addEventListener("click", () => {
   if (playerState.playing) {
@@ -139,9 +161,14 @@ audio.addEventListener("pause", () => {
 });
 
 audio.addEventListener("ended", () => {
-  playerState.playing = false;
-  playPauseBtn.textContent = "Play";
-  status.textContent = "Wiedergabe abgeschlossen";
+  currentIndex++;
+  if (currentIndex < queue.length) {
+    loadTrack(queue[currentIndex]);
+  } else {
+    playerState.playing = false;
+    playPauseBtn.textContent = "PLAY";
+    status.textContent = "Warteschlange beendet";
+  }
 });
 
 audio.addEventListener("waiting", () => {
@@ -248,3 +275,53 @@ document.querySelectorAll('button').forEach((btn) => {
     this.focus(); // erzwingt Fokus beim Mausklick
   });
 });
+
+document.getElementById("back-btn").addEventListener("click", playPreviousTrack);
+document.getElementById("forward-btn").addEventListener("click", playNextTrack);
+
+function renderQueue() {
+  const queueList = document.getElementById("queueList");
+  queueList.innerHTML = ""; // Alte Liste leeren
+
+  if (!queue || queue.length === 0) {
+    queueList.innerHTML = "<li>Warteschlange ist leer.</li>";
+    return;
+  }
+
+  queue.forEach((file, index) => {
+    const li = document.createElement("li");
+    li.textContent = `${index === currentIndex ? "▶️ " : ""}${file.name}`;
+    li.tabIndex = 0;
+    li.setAttribute("role", "button");
+    li.setAttribute("aria-label", `Track ${index + 1}: ${file.name}`);
+    li.addEventListener("click", () => {
+      currentIndex = index;
+      loadTrack(file);
+      document.getElementById("queueView").style.display = "none";
+      document.getElementById("playerView").style.display = "block";
+    });
+    queueList.appendChild(li);
+  });
+}
+
+function playNextTrack() {
+  if (queue.length === 0) return;
+
+  currentIndex++;
+  if (currentIndex >= queue.length) {
+    currentIndex = 0; // optional: zurück zum ersten Track (Loop)
+  }
+
+  loadTrack(queue[currentIndex]);
+}
+
+function playPreviousTrack() {
+  if (queue.length === 0) return;
+
+  currentIndex--;
+  if (currentIndex < 0) {
+    currentIndex = queue.length - 1; // optional: zurück zum letzten Track
+  }
+
+  loadTrack(queue[currentIndex]);
+}
