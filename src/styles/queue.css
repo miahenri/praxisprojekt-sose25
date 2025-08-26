@@ -1,0 +1,33 @@
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--color-lightest);
+        background-color: var(--color-green-dark);
+        padding: var(--s);
+        border-radius: 10px;
+        font-size: var(--fs-s);
+    }
+}
+
+.wl-track-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 2.645fr;
+}
+
+.wl-track-duration {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 1fr;
+}
