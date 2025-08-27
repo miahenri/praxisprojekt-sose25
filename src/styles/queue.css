@@ -44,3 +44,14 @@ ul {
     border-radius: 5px;
 
 }
+
+.back-btn {
+    background-color: var(--color-green-dark);
+    color: var(--color-yellow);
+    border: none;
+    border-radius: 15px;
+    padding: var(--xs) 20px;
+    font-size: var(--fs-s);
+    font-weight: var(--fw-bold);
+    width: auto;
+}
