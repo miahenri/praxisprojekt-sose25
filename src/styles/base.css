@@ -34,3 +34,11 @@ header {
     padding: var(--quarter) var(--quarter);
   }
 }
+
+.fw-bold {
+  font-weight: var(--fw-bold);
+}
+
+.fw-light {
+  font-weight: var(--fw-light);
+}
