@@ -1,18 +1,19 @@
 ul {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--s);
+    margin-bottom: var(--s);
 
     li {
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: 2.645fr 1fr;
+        gap: var(--s);
         align-items: center;
-        justify-content: space-between;
         color: var(--color-lightest);
         background-color: var(--color-green-dark);
-        padding: var(--s);
-        border-radius: 10px;
-        font-size: var(--fs-s);
+        padding: 20px;
+        border-radius: 15px;
+        font-size: var(--fs-m);
     }
 }
 
@@ -21,7 +22,7 @@ ul {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 2.645fr;
+    align-items: center;
 }
 
 .wl-track-duration {
@@ -29,5 +30,17 @@ ul {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 1fr;
+}
+
+.wl-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--s);
+}
+
+.wl-nav>button:focus {
+    outline: 3px solid var(--color-lightest);
+    border-radius: 5px;
+
 }

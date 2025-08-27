@@ -322,14 +322,80 @@ function renderQueue() {
 
         const tempAudio = new Audio();
         tempAudio.src = URL.createObjectURL(file);
+
         tempAudio.addEventListener("loadedmetadata", () => {
           const duration = formatTime(tempAudio.duration);
-          li.innerHTML = `<div class="wl-track-info"><p>${index === currentIndex ? playingNowIcon : ""} ${title}</p> <p>${artist}</p></div> 
-          <div class="wl-track-duration">${duration} <div> ${index === 0 ? "" : arrowUpIcon} ${arrowDownIcon} ${deleteIcon}</div></div>`;
+
+          li.innerHTML = `
+            <div class="wl-track-info">
+              <p class="fw-bold">${index === currentIndex ? playingNowIcon : ""} ${title}</p> 
+              <p class="fw-light">${artist}</p>
+            </div> 
+            <div class="wl-track-duration fw-light">
+              ${duration}
+              <div class="wl-nav">
+                ${index > 0
+                  ? `<button class="queue-btn move-up" aria-label="Nach oben verschieben" data-index="${index}">${arrowUpIcon}</button>`
+                  : ""}
+                ${
+                  index < queue.length - 1
+                    ? `<button class="queue-btn move-down" aria-label="Nach unten verschieben" data-index="${index}">${arrowDownIcon}</button>`
+                    : ""
+                }
+                <button class="queue-btn delete" aria-label="Aus Warteschlange entfernen" data-index="${index}">${deleteIcon}</button>
+              </div>
+            </div>
+          `;
+
+          // Event-Listener setzen
+          const upBtn = li.querySelector(".move-up");
+          const downBtn = li.querySelector(".move-down");
+          const deleteBtn = li.querySelector(".delete");
+
+          if (upBtn) {
+            upBtn.addEventListener("click", () => {
+              const i = parseInt(upBtn.dataset.index);
+              [queue[i], queue[i - 1]] = [queue[i - 1], queue[i]];
+              if (currentIndex === i) currentIndex--;
+              else if (currentIndex === i - 1) currentIndex++;
+              renderQueue();
+            });
+          }
+
+          if (downBtn) {
+            downBtn.addEventListener("click", () => {
+              const i = parseInt(downBtn.dataset.index);
+              [queue[i], queue[i + 1]] = [queue[i + 1], queue[i]];
+              if (currentIndex === i) currentIndex++;
+              else if (currentIndex === i + 1) currentIndex--;
+              renderQueue();
+            });
+          }
+
+          if (deleteBtn) {
+            deleteBtn.addEventListener("click", () => {
+              const i = parseInt(deleteBtn.dataset.index);
+              queue.splice(i, 1);
+              if (i < currentIndex) currentIndex--;
+              else if (i === currentIndex) {
+                if (queue.length > 0) {
+                  currentIndex = Math.min(currentIndex, queue.length - 1);
+                  loadTrack(queue[currentIndex]);
+                } else {
+                  audio.pause();
+                  currentIndex = -1;
+                  status.textContent = "Warteschlange ist leer.";
+                }
+              }
+              renderQueue();
+            });
+          }
         });
       },
       onError: () => {
-        li.innerHTML = `${index === currentIndex ? "▶️ " : ""}Unbekannter Interpret – Unbekannter Titel (??:??)`;
+        li.innerHTML = `${
+          index === currentIndex ? "▶️ " : ""
+        }Unbekannter Interpret – Unbekannter Titel (??:??)`;
       },
     });
 
