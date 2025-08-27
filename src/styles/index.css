@@ -6,6 +6,9 @@ html {
     var(--color-green-light) 100%
   );
 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   color: var(--color-lightest);
   font-family: var(--ff-primary);
   font-size: var(--fs-s);
@@ -81,10 +84,6 @@ h2 {
 button {
   background-color: var(--color-yellow);
 
-  color: var(--color-green-dark);
-  font-family: var(--ff-primary);
-  font-size: var(--fs-s);
-  font-weight: var(--fw-bold);
   padding: var(--quarter) var(--half);
   border-radius: 8px;
   border: none;
@@ -93,4 +92,12 @@ button {
   position: absolute;
   bottom: var(--l);
   right: var(--l);
+
+  a {
+    text-decoration: none;
+    color: var(--color-green-dark);
+    font-family: var(--ff-primary);
+    font-size: var(--fs-s);
+    font-weight: var(--fw-bold);
+  }
 }
