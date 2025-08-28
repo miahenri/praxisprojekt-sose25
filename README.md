@@ -1,4 +1,5 @@
 # Prototypische Umsetzung eines Webplayers für motorisch eingeschränkte Nutzer*innen im Kontext digitaler Barrierefreiheit
+Probiere es [hier](https://miahenri.github.io/praxisprojekt-sose25/src/player.html) selbst aus!
 
 ## 🏁 Projektziel
 
