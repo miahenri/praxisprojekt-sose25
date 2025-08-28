@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anleitung</title>
+    <link rel="stylesheet" href="./styles/combined.css" />
+    <link rel="stylesheet" href="./styles/instruction.css" />
+    <link rel="icon" href="../favicon.ico" />
+  </head>
+  <body>
+    <header aria-label="Header">
+      <h1>milo</h1>
+      <nav aria-label="Navigation">
+        <a href="/über-uns" class="button">Über uns</a>
+        <a href="/anleitung" class="button">Anleitung</a>
+      </nav>
+    </header>
+    <main aria-label="Hauptinhalt">
+      <section class="beginning">
+        <h2>Herzlich Willkommen bei milo</h2>
+        <p class="subheading">deinem barrierearmen Musikplayer</p>
+        <p class="text" aria-label="Einleitung">
+          Der MILO-Player wurde speziell für Menschen mit motorischen
+          Einschränkungen entwickelt und ermöglicht das einfache und
+          barrierearme Abspielen von Musikdateien direkt im Browser. Die
+          Bedienung ist klar strukturiert und funktioniert vollständig per
+          Tastatur oder Maus – ganz ohne komplizierte Menüs. Auf dieser Seite
+          findest du eine Übersicht aller Funktionen, Bedienelemente und
+          Tastenkombinationen, damit du den Player schnell und unkompliziert
+          nutzen kannst.
+        </p>
+      </section>
+
+      <section>
+        <div class="image-container">
+          <div class="text-section">
+            <h3>Tastatursteuerung</h3>
+            <p class="text" aria-label="Tastatursteuerung-Erklärung">
+              Sobald eine Musikdatei ausgewählt wurde, zeigt der Player links
+              das zugehörige Albumcover an. Rechts daneben werden der Titel, die
+              Künstler:innen sowie der Name des Albums angezeigt. Diese
+              Informationen werden automatisch aus der Datei ausgelesen und
+              aktualisiert, sobald ein neuer Song geladen wird.
+            </p>
+          </div>
+          <img src="../assets/images/tab.png" alt="Tabulatortaste" />
+        </div>
+
+        <div class="keyboard-controls" aria-label="Shortcuts">
+          <div class="table-section">
+            <p class="big">Leertaste</p>
+            <p class="explanation">startet oder pausiert die Wiedergabe.</p>
+          </div>
+          <p class="big">Pfeiltasten</p>
+          <div class="table-section">
+            <p class="big">rechts</p>
+            <p class="explanation">spult 5 Sekunden im Track vor.</p>
+            <p class="big">links</p>
+            <p class="explanation">spult 5 Sekunden im Track zurück.</p>
+            <p class="big">oben</p>
+            <p class="explanation">erhöht die Lautstärke um 10%.</p>
+            <p class="big">unten</p>
+            <p class="explanation">verringert die Lautstärke um 10%.</p>
+          </div>
+          <div class="table-section">
+            <p class="big">"M"</p>
+            <p class="explanation">
+              schaltet den Ton stumm oder hebt die Stummschaltung auf.
+            </p>
+            <p class="big">"L"</p>
+            <p class="explanation">
+              aktiviert oder deaktiviert die Loop-Funktion.
+            </p>
+          </div>
+        </div>
+      </section>
+      <button id="start-btn" class="button">
+        <a href="./player.html">Jetzt starten</a>
+      </button>
+    </main>
+  </body>
+</html>
