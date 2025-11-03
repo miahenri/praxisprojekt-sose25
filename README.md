@@ -1,61 +1,56 @@
 # Prototypische Umsetzung eines Webplayers für motorisch eingeschränkte Nutzer*innen im Kontext digitaler Barrierefreiheit
-Probiere es [hier](https://miahenri.github.io/praxisprojekt-sose25/src/player.html) selbst aus!
 
-## 🏁 Projektziel
+**Milo** ist ein prototypischer Musikplayer, der speziell für Menschen mit **motorischen Einschränkungen** entwickelt wurde.  
+Ziel war es, eine **vollständig tastaturbedienbare**, **einfach zugängliche** und **barrierearme Webanwendung** zu schaffen – als funktionales Beispiel für inklusives, digitales Design.
 
-Ziel dieses Projekts ist die Entwicklung eines **barrierearmen Musikplayers als Webanwendung**, der speziell auf die Bedürfnisse von Menschen mit **motorischen Einschränkungen** ausgerichtet ist.
+👉 [Hier ausprobieren](https://miahenri.github.io/praxisprojekt-sose25/src/player.html)
 
-Die Anwendung soll vollständig **tastaturbedienbar** sein, eine **klare, reduzierte Oberfläche** bieten und den Anforderungen an **barrierefreies Webdesign gemäß WCAG 2.2** entsprechen.
+---
 
-Langfristig ist die Anwendung so konzipiert, dass sie optional zu einer **Progressive Web App (PWA)** erweitert werden kann.
+## 🏁 Ziel & Motivation
 
+Viele kommerzielle Musikplattformen sind für Menschen mit eingeschränkter Motorik nur schwer oder gar nicht ohne Maus bedienbar.  
+Milo stellt eine bewusst reduzierte und klar strukturierte Alternative dar – ohne unnötige Ablenkung, ohne Mausbedienung, aber mit voller Funktionalität.
 
+Das Projekt folgt den Richtlinien der **WCAG 2.2** und orientiert sich zusätzlich an den **Sieben Säulen der Barrierefreiheit** (Hellbusch & Probiesch).
 
-## 🔍 Hintergrund
+---
 
-Für viele bestehende Musikplattformen ist die Bedienung ohne Maus oder Touch nur eingeschränkt möglich. Menschen mit motorischen Einschränkungen (z. B. durch Lähmung, Tremor oder eingeschränkte Feinmotorik) stoßen dabei auf unnötige Hürden.  
-Dieses Projekt setzt den Fokus gezielt auf eine inklusive, einfache und zugängliche Alternative.
-
-
-
-## 🛠️ Geplante Kernfunktionen
+## 🛠️ Funktionen im Überblick
 
 - Audiowiedergabe
-- zentrale **Steuerfunktionen** (Play, Pause, Vor, Zurück, Lautstärke)
-- **100 % Tastatursteuerung** für alle Funktionen
-- Intuitive **Fokusführung**
-- Barrierefreies, simples Design
+- **100 % Tastatursteuerung** für alle Bedienelemente
+- **Logische Fokusführung**
+- Lautstärkeregelung & Mute via Tastatur
+- Loop-Funktion & Skip Navigation
+- **Einfaches, kontrastreiches UI**
+- Anleitungsseite mit allen Shortcuts
+- Direkte Nutzung im Browser – ohne Anmeldung oder Softwareinstallation
 
+---
 
+## 🖥️ Technologien
 
-## 💻 Technologie (geplant)
+- HTML  
+- CSS (Custom Properties, Flexbox)  
+- JavaScript (minimal, für Playersteuerung)  
+- GitHub Pages (Deployment)
 
-- **HTML**, **CSS**
-- Weitere Technologien (z. B. für Strukturierung, Komponenten, Zustandsverwaltung oder Hosting) werden im Laufe der Konzeptionsphase festgelegt.
+---
 
+## 📚 Weitere Inhalte
 
+- [📖 Projekt-Wiki](https://github.com/miahenri/praxisprojekt-sose25/wiki)  
+- [🗂️ Projekt-Board](https://github.com/users/miahenri/projects/2)  
+- [🧠 Miro Board](https://miro.com/app/board/uXjVI_cS8GE=/)
 
-## 🧪 Geplante Entwicklungsphasen
+---
 
-Das Projekt wird im Rahmen des Praxissemesters an der Hochschule durchgeführt und soll vorrausichtlich bis **09. Juli 2025** abgeschlossen sein. Es ist in fünf Meilensteine gegliedert (siehe Wiki/Project Board).
+## 🧑🏽‍💻 Projektbeteiligte
 
-1. Anforderungsanalyse & Konzept (Personas, User Flow, WCAG-Kriterien)
-2. Proof-of-Concepts (Tastatursteuerung, Fokusverhalten, Audio)
-3. Zusammensetzung zu funktionsfähigem Prototyp
-4. Testing & Evaluation (Lighthouse, axe-core, manuell)
-5. Dokumentation & Ausarbeitung
+**Projekt & Umsetzung:** Mia Henrichsmeyer
+**Betreuung:** Volker Schaefer
 
-Aktuell befindet sich das Projekt in der Anforderungsanalyse und Konzeptionsphase.
+---
 
-
-
-## 📚 Weiterführende Dokumentation
-
-Weitere Informationen findest du im [📖 Wiki](https://github.com/miahenri/praxisprojekt-sose25/wiki), auf dem [🗂️ Projekt-Board](https://github.com/users/miahenri/projects/2) oder auf dem [📋 Miro Board](https://miro.com/app/board/uXjVI_cS8GE=/).
-
-
-
-## 🧑🏽‍💻 Mitwirkende
-
-Contributor: Mia Henrichsmeyer <br>
-Betreuer: Volker Schaefer
+© 2025 – Milo. Ein Praxisprojekt im Studiengang Medieninformatik an der TH Köln.
